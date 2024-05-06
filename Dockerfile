@@ -1,10 +1,14 @@
-FROM node:latest
+FROM node:10-alpine
 
 WORKDIR /app
 
 COPY . .
 
-ENV PORT=8080
+RUN npm install
+
+COPY --chown=node:node . .
+
+EXPOSE 8080
 
 CMD ["node", "server.js"]
 
